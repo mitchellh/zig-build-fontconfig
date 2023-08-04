@@ -3,8 +3,8 @@
     .version = "0.0.0",
     .dependencies = .{
         .freetype = .{
-            .url = "https://github.com/mitchellh/zig-build-freetype/archive/5dd8051b95515c3035f1b042f76628ebe044a067.tar.gz",
-            .hash = "122074b0c11cafc9cf8e0a8ce05c0e21a462656aa4e7c7e17379d705b8b7e5bfdc40",
+            .url = "https://github.com/mitchellh/zig-build-freetype/archive/f612d67d6ef4313bd94da97e4ef2300bfffae08b.tar.gz",
+            .hash = "12202fd6a9b135f1e000958c277c19c2c26536b2cc339545a21d7c59cc47baa3b0f8",
         },
         .libxml2 = .{
             .url = "https://github.com/mitchellh/zig-build-libxml2/archive/4e80a167d6e13e09e0da77457310401084e758cc.tar.gz",

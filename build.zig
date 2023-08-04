@@ -38,8 +38,8 @@ pub fn build(b: *std.Build) !void {
         "-DHAVE_STRING_H",
         "-DHAVE_UNISTD_H",
         "-DHAVE_SYS_STATVFS_H",
-        "-DHAVE_SYS_VFS_H",
-        "-DHAVE_SYS_STATFS_H",
+        //"-DHAVE_SYS_VFS_H",
+        //"-DHAVE_SYS_STATFS_H",
         "-DHAVE_SYS_PARAM_H",
         "-DHAVE_SYS_MOUNT_H",
 
@@ -125,26 +125,18 @@ pub fn build(b: *std.Build) !void {
 
     lib.addCSourceFiles(srcs, flags.items);
 
-    lib.installHeadersDirectoryOptions(.{
-        .source_dir = .{ .path = "upstream/src" },
-        .install_dir = .header,
-        .install_subdir = "",
-        .exclude_extensions = &.{
-            ".build",
-            ".c",
-            ".cc",
-            ".hh",
-            ".in",
-            ".py",
-            ".rs",
-            ".rl",
-            ".ttf",
-            ".txt",
-        },
-    });
+    inline for (headers) |header| {
+        lib.installHeader("upstream/" ++ header, header);
+    }
 
     b.installArtifact(lib);
 }
+
+const headers = &.{
+    "fontconfig/fontconfig.h",
+    "fontconfig/fcprivate.h",
+    "fontconfig/fcfreetype.h",
+};
 
 const srcs = &.{
     "upstream/src/fcatomic.c",

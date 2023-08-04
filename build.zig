@@ -38,8 +38,6 @@ pub fn build(b: *std.Build) !void {
         "-DHAVE_STRING_H",
         "-DHAVE_UNISTD_H",
         "-DHAVE_SYS_STATVFS_H",
-        //"-DHAVE_SYS_VFS_H",
-        //"-DHAVE_SYS_STATFS_H",
         "-DHAVE_SYS_PARAM_H",
         "-DHAVE_SYS_MOUNT_H",
 
@@ -105,6 +103,12 @@ pub fn build(b: *std.Build) !void {
         }),
 
         else => @panic("unsupported arch"),
+    }
+    if (target.isLinux()) {
+        try flags.appendSlice(&.{
+            "-DHAVE_SYS_VFS_H",
+            "-DHAVE_SYS_STATFS_H",
+        });
     }
     if (!target.isWindows()) {
         try flags.appendSlice(&.{

@@ -5,14 +5,13 @@
 # git reset --hard HEAD.
 set -e
 
-ref=${1:-HEAD}
+vsn=${1:-2.14.2}
 out=${2:-upstream}
 
 rm -rf $out
-git clone https://gitlab.freedesktop.org/fontconfig/fontconfig.git $out
-git -C $out checkout $ref
-git -C $out rev-parse HEAD > ${out}.txt
-rm -rf $out/.git
+curl https://www.freedesktop.org/software/fontconfig/release/fontconfig-${vsn}.tar.gz | tar -xz
+mv fontconfig-${vsn} $out
+echo $vsn > ${out}.txt
 
 # Lower file size
 

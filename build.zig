@@ -5,8 +5,8 @@ pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    const libxml2_enabled = b.option(bool, "enable-libxml2", "Build libxml2") orelse false;
-    const freetype_enabled = b.option(bool, "enable-freetype", "Build freetype") orelse false;
+    const libxml2_enabled = b.option(bool, "enable-libxml2", "Build libxml2") orelse true;
+    const freetype_enabled = b.option(bool, "enable-freetype", "Build freetype") orelse true;
 
     const lib = b.addStaticLibrary(.{
         .name = "fontconfig",
@@ -21,8 +21,13 @@ pub fn build(b: *std.Build) !void {
         const freetype_dep = b.dependency("freetype", .{ .target = target, .optimize = optimize });
         lib.linkLibrary(freetype_dep.artifact("freetype"));
     }
+    if (libxml2_enabled) {
+        const libxml2_dep = b.dependency("libxml2", .{ .target = target, .optimize = optimize });
+        lib.linkLibrary(libxml2_dep.artifact("xml2"));
+    }
 
     lib.addIncludePath(.{ .path = "upstream" });
+    lib.addIncludePath(.{ .path = "override/include" });
 
     var flags = std.ArrayList([]const u8).init(b.allocator);
     defer flags.deinit();

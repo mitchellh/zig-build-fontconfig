@@ -75,5 +75,4 @@ FC_OBJECT (VARIABLE,		FcTypeBool,	FcCompareBool)
 FC_OBJECT (FONT_HAS_HINT,	FcTypeBool,	FcCompareBool)
 FC_OBJECT (ORDER,		FcTypeInteger,	FcCompareNumber)
 FC_OBJECT (DESKTOP_NAME,	FcTypeString,	NULL)
-FC_OBJECT (NAMED_INSTANCE,	FcTypeBool,	FcCompareBool)
 /* ^-------------- Add new objects here. */

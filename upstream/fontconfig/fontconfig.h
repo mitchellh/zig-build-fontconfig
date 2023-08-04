@@ -67,7 +67,7 @@ typedef int		FcBool;
  * it means multiple copies of the font information.
  */
 
-#define FC_CACHE_VERSION_NUMBER	9
+#define FC_CACHE_VERSION_NUMBER	8
 #define _FC_STRINGIFY_(s)    	#s
 #define _FC_STRINGIFY(s)    	_FC_STRINGIFY_(s)
 #define FC_CACHE_VERSION    	_FC_STRINGIFY(FC_CACHE_VERSION_NUMBER)
@@ -129,7 +129,6 @@ typedef int		FcBool;
 #define FC_FONT_HAS_HINT    "fonthashint"	/* Bool - true if font has hinting */
 #define FC_ORDER	    "order"		/* Integer */
 #define FC_DESKTOP_NAME     "desktop"		/* String */
-#define FC_NAMED_INSTANCE   "namedinstance"	/* Bool - true if font is named instance */
 
 #define FC_CACHE_SUFFIX		    ".cache-" FC_CACHE_VERSION
 #define FC_DIR_CACHE_FILE	    "fonts.cache-" FC_CACHE_VERSION
